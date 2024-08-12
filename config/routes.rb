@@ -7,12 +7,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # Nested resources for verticals, categories, and courses
   resources :verticals do
     resources :categories do
       resources :courses
     end
   end
-  # OAuth routes
+
+  # OAuth routes with Doorkeeper
   use_doorkeeper
+   # Devise routes for User authentication
   devise_for :users
 end

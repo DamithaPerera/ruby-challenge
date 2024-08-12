@@ -4,6 +4,12 @@ class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validate :name_uniqueness_across_models
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  belongs_to :vertical
+  has_many :courses
+  validates :name, presence: true, uniqueness: true
+
   private
 
   def name_uniqueness_across_models

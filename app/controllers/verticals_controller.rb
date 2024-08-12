@@ -21,6 +21,7 @@ class VerticalsController < ApplicationController
   
     def update
       if @vertical.update(vertical_params)
+        @vertical.categories.each(&:touch)
         render json: @vertical
       else
         render json: @vertical.errors, status: :unprocessable_entity
