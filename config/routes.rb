@@ -7,4 +7,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :verticals do
+    resources :categories do
+      resources :courses
+    end
+  end
+  # OAuth routes
+  use_doorkeeper
+  devise_for :users
 end
